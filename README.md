@@ -4,7 +4,7 @@
 [![Python 3.12](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![Status: Experimental](https://img.shields.io/badge/Status-Experimental-orange.svg)]()
 
-Deterministic script runner for the [Ancroo](https://github.com/Stefan-Schmidbauer/ancroo) ecosystem. Runs user-extensible plugins that transform data — no LLM required.
+Deterministic script runner for the [Ancroo](https://github.com/ancroo/ancroo) ecosystem. Runs user-extensible plugins that transform data — no LLM required.
 
 > **Note:** This module is marked as **experimental**. The stack will ask for confirmation before enabling it.
 
@@ -78,7 +78,7 @@ def run(input: dict) -> dict:
 
 ### As Ancroo Stack Module
 
-If the runner repo is cloned alongside the stack (e.g. via the [meta-installer](https://github.com/Stefan-Schmidbauer/ancroo)):
+If the runner repo is cloned alongside the stack (e.g. via the [meta-installer](https://github.com/ancroo/ancroo)):
 
 ```bash
 cd ancroo-runner
@@ -117,7 +117,7 @@ docker compose restart ancroo-runner
 
 ## Workflow Integration
 
-The runner integrates with [Ancroo Backend](https://github.com/Stefan-Schmidbauer/ancroo-backend) via the `custom` workflow type. Example workflow definitions are in the `workflows/` directory. To use them, copy the JSON files into the backend's workflow import directory or import them via the admin API.
+The runner integrates with [Ancroo Backend](https://github.com/ancroo/ancroo-backend) via the `custom` workflow type. Example workflow definitions are in the `workflows/` directory. To use them, copy the JSON files into the backend's workflow import directory or import them via the admin API.
 
 See `workflows/html-to-markdown.json` for a complete example that maps a browser text selection to the runner's `/convert/html-to-markdown` endpoint.
 
@@ -131,7 +131,7 @@ See `workflows/html-to-markdown.json` for a complete example that maps a browser
 
 ## Contributing
 
-Contributions are welcome! Feel free to open an [issue](https://github.com/Stefan-Schmidbauer/ancroo-runner/issues) or submit a pull request.
+Contributions are welcome! Feel free to open an [issue](https://github.com/ancroo/ancroo-runner/issues) or submit a pull request.
 
 ## Author
 
