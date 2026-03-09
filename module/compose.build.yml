@@ -4,7 +4,7 @@
 
 services:
   ancroo-runner:
-    image: ghcr.io/stefan-schmidbauer/ancroo-runner:latest
+    image: ghcr.io/ancroo/ancroo-runner:latest
     build:
       context: ../ancroo-runner
       dockerfile: Dockerfile

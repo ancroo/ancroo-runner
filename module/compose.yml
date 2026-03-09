@@ -1,6 +1,6 @@
 services:
   ancroo-runner:
-    image: ghcr.io/stefan-schmidbauer/ancroo-runner:latest
+    image: ghcr.io/ancroo/ancroo-runner:latest
     container_name: ancroo-runner
     restart: unless-stopped
     volumes:
