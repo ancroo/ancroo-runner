@@ -139,7 +139,7 @@ Contributions are welcome! Feel free to open an [issue](https://github.com/ancro
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE). The Ancroo name is not covered by this license and remains the property of the author.
 
 ---
 
