@@ -1,0 +1,15 @@
+services:
+  ancroo-runner:
+    image: ghcr.io/stefan-schmidbauer/ancroo-runner:latest
+    container_name: ancroo-runner
+    restart: unless-stopped
+    volumes:
+      - ./data/ancroo-runner/plugins:/app/user-plugins:ro
+    networks:
+      - ai-network
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 5s
+      start_period: 10s
+      retries: 3

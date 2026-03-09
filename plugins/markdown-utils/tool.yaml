@@ -1,0 +1,6 @@
+name: markdown-utils
+description: Markdown conversion utilities
+endpoints:
+  - path: /convert/html-to-markdown
+    script: html_to_md.py
+    description: Convert HTML to clean Markdown

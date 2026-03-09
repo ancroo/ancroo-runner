@@ -1,0 +1,9 @@
+# Ancroo Runner Dashboard Widget — SSL mode
+- Automation:
+    - Ancroo Runner:
+        icon: mdi-play-circle-outline
+        href: https://${ANCROO_RUNNER_DOMAIN}/docs
+        description: Script runner with plugin system
+        siteMonitor: http://ancroo-runner:8000/health
+        server: local
+        container: ancroo-runner

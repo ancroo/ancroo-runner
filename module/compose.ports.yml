@@ -1,0 +1,4 @@
+services:
+  ancroo-runner:
+    ports:
+      - "${ANCROO_RUNNER_PORT:-8510}:8000"

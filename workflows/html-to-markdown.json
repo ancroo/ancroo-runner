@@ -1,0 +1,18 @@
+{
+  "name": "HTML to Markdown",
+  "slug": "html-to-markdown",
+  "description": "Convert selected HTML to clean Markdown",
+  "workflow_type": "custom",
+  "input_type": "text",
+  "output_type": "clipboard",
+  "recipe": {"collect": ["text_selection"]},
+  "target_config": {
+    "url": "http://ancroo-runner:8000/convert/html-to-markdown",
+    "method": "POST",
+    "headers": {"Content-Type": "application/json"},
+    "payload_template": "{\"html\": \"{{ html }}\"}",
+    "response_mapping": "$.result",
+    "timeout": 30
+  },
+  "output_action": "clipboard"
+}

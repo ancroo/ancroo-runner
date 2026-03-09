@@ -1,0 +1,13 @@
+.git
+.github
+.gitignore
+.dockerignore
+.claude
+.venv
+venv
+__pycache__
+*.pyc
+*.md
+LICENSE
+module/
+workflows/
