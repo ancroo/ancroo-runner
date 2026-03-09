@@ -117,7 +117,13 @@ docker compose restart ancroo-runner
 
 ## Workflow Integration
 
-The runner integrates with [Ancroo Backend](https://github.com/ancroo/ancroo-backend) via the `custom` workflow type. Example workflow definitions are in the `workflows/` directory. To use them, copy the JSON files into the backend's workflow import directory or import them via the admin API.
+The runner integrates with [Ancroo Backend](https://github.com/ancroo/ancroo-backend) via the `custom` workflow type. Example workflow definitions are in the `workflows/` directory. To use them, import them via the backend admin panel or API.
+
+**Important:** The runner listens on port **8000** inside the Docker network. The host port (default 8510) is only for external access. When creating backend workflows that call the runner, use the internal URL:
+
+```
+http://ancroo-runner:8000/convert/html-to-markdown
+```
 
 See `workflows/html-to-markdown.json` for a complete example that maps a browser text selection to the runner's `/convert/html-to-markdown` endpoint.
 
