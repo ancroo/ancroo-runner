@@ -10,7 +10,7 @@
     "url": "http://ancroo-runner:8000/convert/html-to-markdown",
     "method": "POST",
     "headers": {"Content-Type": "application/json"},
-    "payload_template": "{\"html\": \"{{ html }}\"}",
+    "payload_template": "{\"html\": \"{{ html or text }}\"}",
     "response_mapping": "$.result",
     "timeout": 30
   },
