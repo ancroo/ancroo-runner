@@ -143,6 +143,26 @@ Contributions are welcome! Feel free to open an [issue](https://github.com/ancro
 
 **Stefan Schmidbauer** — [GitHub](https://github.com/Stefan-Schmidbauer)
 
+## Acknowledgments
+
+This project is built with the following open-source software:
+
+| Project | Purpose | License |
+|---------|---------|---------|
+| [FastAPI](https://fastapi.tiangolo.com/) | Web framework | MIT |
+| [Uvicorn](https://www.uvicorn.org/) | ASGI server | BSD-3-Clause |
+| [PyYAML](https://pyyaml.org/) | Plugin config parsing | MIT |
+
+Builtin plugins use additional libraries:
+
+| Library | Plugin | License |
+|---------|--------|---------|
+| [markdownify](https://github.com/matthewwithanm/python-markdownify) | markdown-utils | MIT |
+| [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/) | webpage-to-ebook | MIT |
+| [ebooklib](https://github.com/aerkalov/ebooklib) | webpage-to-ebook | AGPL-3.0 |
+
+> **Note:** The `webpage-to-ebook` plugin depends on ebooklib, which is licensed under AGPL-3.0. This dependency is isolated to the plugin and installed at container startup only when the plugin is loaded.
+
 ## License
 
 MIT — see [LICENSE](LICENSE). The Ancroo name is not covered by this license and remains the property of the author.
