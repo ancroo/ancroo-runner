@@ -1,0 +1,6 @@
+name: webpage-to-ebook
+description: Convert webpage HTML to EPUB ebook
+endpoints:
+  - path: /convert/webpage-to-ebook
+    script: webpage_to_epub.py
+    description: Convert webpage HTML to an EPUB file (returns base64)
