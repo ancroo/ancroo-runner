@@ -16,25 +16,18 @@ def _sanitize_filename(title: str) -> str:
     return name[:80] or "webpage"
 
 
-def _extract_body(html: str) -> str:
-    """Extract <body> content if present."""
-    match = re.search(r"<body[^>]*>(.*)</body>", html, re.DOTALL | re.IGNORECASE)
-    if match:
-        return match.group(1)
-    html = re.sub(r"<!DOCTYPE[^>]*>", "", html, flags=re.IGNORECASE)
-    html = re.sub(r"<head[^>]*>.*?</head>", "", html, flags=re.DOTALL | re.IGNORECASE)
-    html = re.sub(r"</?html[^>]*>", "", html, flags=re.IGNORECASE)
-    return html
-
-
 def _clean_html(html: str) -> str:
-    """Remove scripts, styles, and non-content elements."""
-    soup = BeautifulSoup(html, "html.parser")
+    """Extract body content and remove scripts, styles, and non-content elements."""
+    soup = BeautifulSoup(html, "lxml")
 
-    for tag in soup.find_all(["script", "style", "nav", "footer", "iframe", "noscript"]):
+    for tag in soup.find_all(["script", "style", "footer", "iframe", "noscript"]):
         tag.decompose()
 
-    return str(soup)
+    # lxml always wraps fragments in <html><body> — extract body contents only
+    body = soup.body
+    if body:
+        return body.decode_contents()
+    return soup.decode_contents()
 
 
 def run(input: dict) -> dict:
@@ -45,9 +38,8 @@ def run(input: dict) -> dict:
     if not html:
         return {"result": "", "error": "No HTML content provided"}
 
-    # Extract and clean body content
-    body_html = _extract_body(html)
-    body_html = _clean_html(body_html)
+    # Clean HTML and extract body content
+    body_html = _clean_html(html)
 
     # Create EPUB
     book = epub.EpubBook()
@@ -60,6 +52,17 @@ def run(input: dict) -> dict:
     # Add metadata
     if url:
         book.add_metadata("DC", "source", url)
+
+    # Add default CSS
+    style = epub.EpubItem(
+        uid="style",
+        file_name="style/default.css",
+        media_type="text/css",
+        content=b"body { font-family: serif; line-height: 1.6; margin: 1em; } "
+        b"h1 { margin-bottom: 0.5em; } "
+        b"img { max-width: 100%; height: auto; }",
+    )
+    book.add_item(style)
 
     # Create chapter from HTML content
     chapter = epub.EpubHtml(
@@ -78,18 +81,8 @@ def run(input: dict) -> dict:
 </html>"""
 
     chapter.set_content(chapter_html)
+    chapter.add_item(style)
     book.add_item(chapter)
-
-    # Add default CSS
-    style = epub.EpubItem(
-        uid="style",
-        file_name="style/default.css",
-        media_type="text/css",
-        content=b"body { font-family: serif; line-height: 1.6; margin: 1em; } "
-        b"h1 { margin-bottom: 0.5em; } "
-        b"img { max-width: 100%; height: auto; }",
-    )
-    book.add_item(style)
 
     # Add navigation
     book.toc = [chapter]
