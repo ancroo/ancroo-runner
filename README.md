@@ -74,6 +74,7 @@ def run(input: dict) -> dict:
 **Input:** `{"html": "<b>Hello</b> <a href='https://example.com'>World</a>"}`
 **Output:** `{"result": "**Hello** [World](https://example.com)"}`
 
+
 ## Installation
 
 ### As Ancroo Stack Module
@@ -159,6 +160,7 @@ Builtin plugins use additional libraries:
 |---------|--------|---------|
 | [markdownify](https://github.com/matthewwithanm/python-markdownify) | markdown-utils | MIT |
 | [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/) | webpage-to-ebook | MIT |
+| [lxml](https://lxml.de/) | webpage-to-ebook | BSD-3-Clause |
 | [ebooklib](https://github.com/aerkalov/ebooklib) | webpage-to-ebook | AGPL-3.0 |
 
 > **Note:** The `webpage-to-ebook` plugin depends on ebooklib, which is licensed under AGPL-3.0. This dependency is isolated to the plugin and installed at container startup only when the plugin is loaded.
