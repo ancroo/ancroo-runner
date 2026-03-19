@@ -2,11 +2,11 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.12](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)](https://www.python.org/)
-[![Status: Experimental](https://img.shields.io/badge/Status-Experimental-orange.svg)]()
+[![Status: Beta](https://img.shields.io/badge/Status-Beta-yellow.svg)]()
 
 Deterministic script runner for the [Ancroo](https://github.com/ancroo/ancroo) ecosystem. Runs user-extensible plugins that transform data — no LLM required.
 
-> **Note:** This module is marked as **experimental**. The stack will ask for confirmation before enabling it.
+> **Phase 0 (Beta)** — The runner works end-to-end, but the stack it connects to runs without encryption or authentication by default. Intended for local/trusted networks only. See the [Ancroo Roadmap](https://github.com/ancroo/ancroo/blob/main/ROADMAP.md) for the security path forward.
 
 ## How It Works
 
