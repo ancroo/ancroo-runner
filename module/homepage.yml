@@ -1,9 +1,9 @@
 # Ancroo Runner Dashboard Widget
-- Automation:
+- Infrastructure:
     - Ancroo Runner:
         icon: mdi-play-circle-outline
         href: http://${HOST_IP}:${ANCROO_RUNNER_PORT}/docs
-        description: Script runner with plugin system
+        description: Script Runner API
         siteMonitor: http://ancroo-runner:8000/health
         server: local
         container: ancroo-runner
