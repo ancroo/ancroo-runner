@@ -118,8 +118,8 @@ if $ENABLE_NOW; then
     fi
 
     # Add homepage dashboard entry
-    local homepage_snippet="$TARGET_DIR/homepage.yml"
-    local homepage_services="$STACK_DIR/data/homepage/services.yaml"
+    homepage_snippet="$TARGET_DIR/homepage.yml"
+    homepage_services="$STACK_DIR/data/homepage/services.yaml"
     if [[ -f "$homepage_snippet" ]] && [[ -f "$homepage_services" ]]; then
         if ! grep -q "ancroo-runner" "$homepage_services" 2>/dev/null; then
             export ANCROO_RUNNER_PORT="${ANCROO_RUNNER_PORT:-8510}"
