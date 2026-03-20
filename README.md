@@ -105,16 +105,16 @@ Splits long audio files at speech pauses, transcribes each chunk via a Whisper-c
 
 ## Installation
 
-### As Ancroo Stack Module
+### As Ancroo Stack Component
 
-If the runner repo is cloned alongside the stack (e.g. via the [meta-installer](https://github.com/ancroo/ancroo)):
+If the runner repo is cloned alongside the stack (automatically offered during `ancroo-stack/install.sh`):
 
 ```bash
 cd ancroo-runner
 ./install-stack.sh ../ancroo-stack
 ```
 
-This copies the module files into the stack and optionally enables the module. For dev builds from source, set `ANCROO_LOCAL_BUILD=y`:
+This symlinks the module files into the stack, adds compose entries, and starts the service. For dev builds from source, set `ANCROO_LOCAL_BUILD=y`:
 
 ```bash
 ANCROO_LOCAL_BUILD=y ./install-stack.sh ../ancroo-stack
@@ -123,8 +123,7 @@ ANCROO_LOCAL_BUILD=y ./install-stack.sh ../ancroo-stack
 Alternatively, if the module files are already in the stack:
 
 ```bash
-cd ancroo-stack
-./module.sh enable ancroo-runner
+bash /path/to/ancroo-runner/install-stack.sh /path/to/ancroo-stack
 ```
 
 ### Standalone (Docker)
