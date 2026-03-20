@@ -74,6 +74,34 @@ def run(input: dict) -> dict:
 **Input:** `{"html": "<b>Hello</b> <a href='https://example.com'>World</a>"}`
 **Output:** `{"result": "**Hello** [World](https://example.com)"}`
 
+### audio-transcription
+
+| Endpoint | Description |
+|----------|-------------|
+| `POST /transcribe/audio` | Transcribe audio with silence-based splitting via Whisper API |
+
+Splits long audio files at speech pauses, transcribes each chunk via a Whisper-compatible API (e.g. [Speaches](https://github.com/speaches-ai/speaches)), and reassembles the text. Requires the `speaches` or `whisper-rocm` stack module.
+
+**Input:**
+```json
+{
+  "audio_base64": "<base64-encoded audio (WAV, MP3, FLAC, OGG)>",
+  "language": "de",
+  "model": "Systran/faster-whisper-large-v3"
+}
+```
+
+**Output:**
+```json
+{
+  "result": "Transcribed text...",
+  "duration_s": 45.2,
+  "chunks_count": 3
+}
+```
+
+**Environment:** Set `WHISPER_BASE_URL` to override the default Whisper API endpoint (`http://speaches:8000/v1/audio/transcriptions`).
+
 
 ## Installation
 
@@ -162,6 +190,8 @@ Builtin plugins use additional libraries:
 | [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/) | webpage-to-ebook | MIT |
 | [lxml](https://lxml.de/) | webpage-to-ebook | BSD-3-Clause |
 | [ebooklib](https://github.com/aerkalov/ebooklib) | webpage-to-ebook | AGPL-3.0 |
+| [pydub](https://github.com/jiaaro/pydub) | audio-transcription | MIT |
+| [Requests](https://requests.readthedocs.io/) | audio-transcription | Apache-2.0 |
 
 > **Note:** The `webpage-to-ebook` plugin depends on ebooklib, which is licensed under AGPL-3.0. This dependency is isolated to the plugin and installed at container startup only when the plugin is loaded.
 

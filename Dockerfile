@@ -2,6 +2,10 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
+# System dependencies (ffmpeg required by pydub for audio processing)
+RUN apt-get update && apt-get install -y --no-install-recommends ffmpeg && \
+    rm -rf /var/lib/apt/lists/*
+
 # Build-time version info
 ARG BUILD_COMMIT=dev
 RUN echo "$BUILD_COMMIT" > /app/BUILD_COMMIT

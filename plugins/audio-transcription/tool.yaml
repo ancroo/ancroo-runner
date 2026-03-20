@@ -1,0 +1,6 @@
+name: audio-transcription
+description: Transcribe audio files via Whisper API with automatic silence-based splitting
+endpoints:
+  - path: /transcribe/audio
+    script: transcribe.py
+    description: Transcribe audio file (base64-encoded) with silence-based splitting via Whisper API
