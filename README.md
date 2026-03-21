@@ -102,6 +102,33 @@ Splits long audio files at speech pauses, transcribes each chunk via a Whisper-c
 
 **Environment:** Set `WHISPER_BASE_URL` to override the default Whisper API endpoint (`http://speaches:8000/v1/audio/transcriptions`).
 
+### webpage-to-ebook
+
+| Endpoint | Description |
+|----------|-------------|
+| `POST /convert/webpage-to-ebook` | Convert webpage HTML to an EPUB file (returns base64) |
+
+Takes a full webpage's HTML and converts it to a clean EPUB ebook. Scripts, styles, and non-content elements are stripped automatically.
+
+**Input:**
+```json
+{
+  "html": "<html>...</html>",
+  "title": "Page Title",
+  "url": "https://example.com/article"
+}
+```
+
+**Output:**
+```json
+{
+  "result": "<base64-encoded EPUB>",
+  "filename": "page-title.epub",
+  "mime_type": "application/epub+zip"
+}
+```
+
+> **Note:** This plugin depends on [ebooklib](https://github.com/aerkalov/ebooklib) (AGPL-3.0). The dependency is isolated to the plugin and installed at container startup only when the plugin is loaded.
 
 ## Installation
 
