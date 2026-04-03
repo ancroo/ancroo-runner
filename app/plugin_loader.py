@@ -2,6 +2,7 @@
 
 import importlib.util
 import logging
+import re
 import sys
 from pathlib import Path
 from typing import Any
@@ -10,6 +11,12 @@ import yaml
 from fastapi import FastAPI, HTTPException, Request
 
 logger = logging.getLogger(__name__)
+
+# Paths reserved for the application itself — plugins must not overwrite these.
+_RESERVED_PATHS = {"/health", "/plugins", "/docs", "/openapi.json", "/redoc"}
+
+# Only allow clean URL paths: lowercase alphanumeric, hyphens, underscores, slashes.
+_VALID_PATH_RE = re.compile(r"^/[a-z0-9][a-z0-9_/-]*$")
 
 
 def _load_module(script_path: Path):
@@ -42,7 +49,7 @@ def _register_endpoint(app: FastAPI, path: str, script_path: Path, description: 
             result = run_fn(body)
         except Exception as exc:
             logger.exception("Plugin error in %s", path)
-            raise HTTPException(status_code=500, detail=str(exc))
+            raise HTTPException(status_code=500, detail="Plugin execution failed")
         return result
 
     # Set a unique operation_id for OpenAPI
@@ -85,10 +92,25 @@ def load_plugins(app: FastAPI, plugin_dirs: list[Path]) -> list[dict[str, Any]]:
                     logger.warning("Skipping endpoint in %s: missing path or script", plugin_name)
                     continue
 
+                if ep_path in _RESERVED_PATHS:
+                    logger.warning("Rejected reserved endpoint path in %s: %s", plugin_name, ep_path)
+                    continue
+
+                if not _VALID_PATH_RE.match(ep_path):
+                    logger.warning("Rejected invalid endpoint path in %s: %s", plugin_name, ep_path)
+                    continue
+
                 script_path = plugin_path / ep_script
 
                 if not script_path.is_file():
                     logger.warning("Script not found: %s", script_path)
+                    continue
+
+                # Prevent symlink attacks — script must resolve inside the plugin directory
+                resolved_script = script_path.resolve()
+                resolved_plugin = plugin_path.resolve()
+                if not resolved_script.is_relative_to(resolved_plugin):
+                    logger.warning("Path traversal blocked in %s: %s resolves outside plugin dir", plugin_name, ep_script)
                     continue
 
                 try:
