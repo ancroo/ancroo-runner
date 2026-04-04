@@ -198,7 +198,7 @@ Contributions are welcome! Feel free to open an [issue](https://github.com/ancro
 
 ## Author
 
-**Stefan Schmidbauer** — [GitHub](https://github.com/Stefan-Schmidbauer)
+**Stefan Schmidbauer** — [GitHub](https://github.com/Stefan-Schmidbauer) · [stefan@ancroo.com](mailto:stefan@ancroo.com)
 
 ## Acknowledgments
 
