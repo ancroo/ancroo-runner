@@ -8,7 +8,7 @@
 
 Deterministic script runner for the [Ancroo](https://github.com/ancroo/ancroo) ecosystem. Runs user-extensible plugins that transform data — no LLM required.
 
-> **Phase 0 (Beta)** — The runner works end-to-end, but the stack it connects to runs without encryption or authentication by default. Intended for local/trusted networks only. See the [Ancroo Roadmap](https://github.com/ancroo/ancroo/blob/main/ROADMAP.md) for the security path forward.
+> **Phase 0 (Beta)** — The runner is functional for local use, but the stack it connects to runs without encryption or authentication by default and is still under active development. Intended for local/trusted networks only. See the [Ancroo Roadmap](https://github.com/ancroo/ancroo/blob/main/ROADMAP.md) for the security path forward.
 
 ## How It Works
 
