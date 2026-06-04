@@ -1,4 +1,4 @@
-# Ancroo Runner
+# <img src="assets/icon-48.png" width="30" style="vertical-align: middle"> Ancroo Runner
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.12](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)](https://www.python.org/)
@@ -195,6 +195,10 @@ See `workflows/html-to-markdown.json` for a complete example that maps a browser
 ## Contributing
 
 Contributions are welcome! Feel free to open an [issue](https://github.com/ancroo/ancroo-runner/issues) or submit a pull request.
+
+## Security
+
+To report a security vulnerability, please use [GitHub's private vulnerability reporting](https://github.com/ancroo/ancroo-runner/security/advisories/new) instead of opening a public issue.
 
 ## Author
 
