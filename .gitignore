@@ -21,3 +21,6 @@ build/
 .DS_Store
 .claude/
 CLAUDE.md
+
+# Articles, LinkedIn/website images, videos — local only, never committed
+marketing/
